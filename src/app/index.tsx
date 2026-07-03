@@ -13,11 +13,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import {
-  BUS_CONFIG,
-  BUS_TYPES,
-  MAX_SELECTED_SEATS,
-} from "../constants/busConfig";
+import Legend from "@/components/Legend";
+import SeatItem from "@/components/SeatItem";
+import BusTypeSelector from "../components/BusTypeSelector";
+import { BUS_CONFIG, MAX_SELECTED_SEATS } from "../constants/busConfig";
 import {
   getBookedSeats,
   getBookingHistory,
@@ -184,27 +183,14 @@ export default function BookingScreen() {
     const isExpress = busType === "express";
 
     return (
-      <Pressable
+      <SeatItem
         key={seatId}
-        disabled={isBooked}
-        onPress={() => handleSelectSeat(seatId)}
-        style={[
-          styles.seat,
-          isExpress && styles.expressSeat,
-          isSelected && styles.selectedSeat,
-          isBooked && styles.bookedSeat,
-        ]}
-      >
-        <Text
-          style={[
-            styles.seatText,
-            isSelected && styles.selectedSeatText,
-            isBooked && styles.bookedSeatText,
-          ]}
-        >
-          {seatId}
-        </Text>
-      </Pressable>
+        seatId={seatId}
+        isSelected={isSelected}
+        isBooked={isBooked}
+        isExpress={isExpress}
+        onPress={handleSelectSeat}
+      />
     );
   };
 
@@ -246,37 +232,10 @@ export default function BookingScreen() {
         <Text style={styles.title}>Bus Seat Booking</Text>
 
         <View style={styles.card}>
-          <View style={styles.busTypeContainer}>
-            {BUS_TYPES.map((type) => {
-              const isActive = busType === type;
-
-              return (
-                <Pressable
-                  key={type}
-                  onPress={() => handleSelectBusType(type)}
-                  style={styles.radioWrapper}
-                >
-                  <View
-                    style={[
-                      styles.radioOuter,
-                      isActive && styles.radioOuterActive,
-                    ]}
-                  >
-                    {isActive && <View style={styles.radioInner} />}
-                  </View>
-
-                  <Text
-                    style={[
-                      styles.radioText,
-                      isActive && styles.radioTextActive,
-                    ]}
-                  >
-                    {BUS_CONFIG[type].label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
+          <BusTypeSelector
+            selectedBusType={busType}
+            onSelectBusType={handleSelectBusType}
+          />
 
           <View style={styles.infoBox}>
             <Text style={styles.infoText}>
@@ -321,22 +280,7 @@ export default function BookingScreen() {
             />
           )}
 
-          <View style={styles.legendContainer}>
-            <View style={styles.legendItem}>
-              <View style={[styles.legendBox, styles.availableLegend]} />
-              <Text style={styles.legendText}>Available</Text>
-            </View>
-
-            <View style={styles.legendItem}>
-              <View style={[styles.legendBox, styles.selectedLegend]} />
-              <Text style={styles.legendText}>Selected</Text>
-            </View>
-
-            <View style={styles.legendItem}>
-              <View style={[styles.legendBox, styles.bookedLegend]} />
-              <Text style={styles.legendText}>Booked</Text>
-            </View>
-          </View>
+          <Legend />
 
           <View style={styles.seatContainer}>{renderSeatRows()}</View>
 
@@ -407,42 +351,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 4,
   },
-  busTypeContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 18,
-  },
-  radioWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  radioOuter: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 2,
-    borderColor: "#9CA3AF",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 8,
-  },
-  radioOuterActive: {
-    borderColor: PRIMARY_COLOR,
-  },
-  radioInner: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: PRIMARY_COLOR,
-  },
-  radioText: {
-    fontSize: 15,
-    color: MUTED_COLOR,
-  },
-  radioTextActive: {
-    color: "#111827",
-    fontWeight: "600",
-  },
+
   infoBox: {
     backgroundColor: "#F9FAFB",
     borderRadius: 12,
@@ -488,34 +397,7 @@ const styles = StyleSheet.create({
     color: "#DC2626",
     marginTop: 6,
   },
-  legendContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 18,
-  },
-  legendItem: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  legendBox: {
-    width: 14,
-    height: 14,
-    borderRadius: 4,
-    marginRight: 6,
-  },
-  availableLegend: {
-    backgroundColor: "#E5E7EB",
-  },
-  selectedLegend: {
-    backgroundColor: PRIMARY_COLOR,
-  },
-  bookedLegend: {
-    backgroundColor: "#9CA3AF",
-  },
-  legendText: {
-    fontSize: 12,
-    color: MUTED_COLOR,
-  },
+
   seatContainer: {
     marginBottom: 20,
   },
@@ -531,34 +413,7 @@ const styles = StyleSheet.create({
   aisle: {
     width: 34,
   },
-  seat: {
-    width: 48,
-    height: 48,
-    borderRadius: 10,
-    backgroundColor: "#E5E7EB",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  expressSeat: {
-    height: 76,
-  },
-  selectedSeat: {
-    backgroundColor: PRIMARY_COLOR,
-  },
-  bookedSeat: {
-    backgroundColor: "#9CA3AF",
-  },
-  seatText: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#111827",
-  },
-  selectedSeatText: {
-    color: "#FFFFFF",
-  },
-  bookedSeatText: {
-    color: "#FFFFFF",
-  },
+
   summaryRow: {
     flexDirection: "row",
     justifyContent: "space-between",
