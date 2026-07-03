@@ -77,26 +77,34 @@ src/
 ```
 
 ## How to Run
+
 1. Clone this repository:
+
 ```bash
 git clone https://github.com/putrafir/BusSeatBooking.git
 cd BusSeatBooking
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the Project
+
 ```bash
 npx expo start
 ```
 
 ## APK Download
+
 APK download link:
+
 ```text
-<put-your-google-drive-apk-link-here>
+https://expo.dev/accounts/putrafir/projects/BusSeatBooking/builds/c2f10d6b-f00d-452f-8caf-dec132b4fd42
 ```
+
 ## Notes
+
 This application uses local storage only. No backend is required.
