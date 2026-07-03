@@ -102,7 +102,7 @@ npx expo start
 APK download link:
 
 ```text
-https://expo.dev/accounts/putrafir/projects/BusSeatBooking/builds/c2f10d6b-f00d-452f-8caf-dec132b4fd42
+https://drive.google.com/file/d/1CGpSaYzYEtIq9IsemHtunNAJQsSnaaRF/view?usp=sharing
 ```
 
 ## Notes
