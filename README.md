@@ -1,56 +1,102 @@
-# Welcome to your Expo app 👋
+# Bus Seat Booking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bus Seat Booking is a React Native mobile application that allows users to book bus seats based on bus class and departure date. This project was built as a technical test for the Intern React Native Developer position.
 
-## Get started
+## Features
 
-1. Install dependencies
+### Main Features
 
-   ```bash
-   npm install
-   ```
+- Select bus class:
+  - Regular Class
+  - Express Class
+- Dynamic seat layout based on selected bus class
+- Select and unselect seats
+- Maximum 5 seats per booking
+- Different seat pricing for window seats and regular seats
+- Live total price calculation
+- Confirm booking
+- Booked seats become unavailable
+- Local storage using AsyncStorage
+- Automatic seat reset when all seats for a bus type and selected date are fully booked
 
-2. Start the app
+### Bonus Features
 
-   ```bash
-   npx expo start
-   ```
+- Departure date picker
+- Seats are booked based on selected departure date
+- Sales history screen
+- Total revenue calculation
+- Date filter for sales history
 
-In the output, you'll find options to open the app in a
+## Bus Class Rules
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Regular Class
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Total seats: 20
+- Layout: 10 seats left and 10 seats right
+- Window seat price: Rp 150.000
+- Regular seat price: Rp 100.000
 
-## Get a fresh project
+### Express Class
 
-When you're ready, run:
+- Total seats: 12
+- Layout: 6 seats left and 6 seats right
+- Window seat price: Rp 200.000
+- Regular seat price: Rp 150.000
 
-```bash
-npm run reset-project
+## Tech Stack
+
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+- AsyncStorage
+- React Native DateTimePicker
+
+## Project Structure
+
+```txt
+src/
+├── app/
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── history.tsx
+├── components/
+│   ├── BusTypeSelector.tsx
+│   ├── Legend.tsx
+│   └── SeatItem.tsx
+├── constants/
+│   └── busConfig.ts
+├── storage/
+│   └── bookingStorage.ts
+├── types/
+│   └── booking.ts
+└── utils/
+    ├── formatCurrency.ts
+    ├── priceCalculator.ts
+    └── seatGenerator.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## How to Run
+1. Clone this repository:
+```bash
+git clone https://github.com/putrafir/BusSeatBooking.git
+cd BusSeatBooking
+```
 
-### Other setup steps
+2. Install dependencies:
+```bash
+npm install
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+3. Run the Project
+```bash
+npx expo start
+```
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## APK Download
+APK download link:
+```text
+<put-your-google-drive-apk-link-here>
+```
+## Notes
+This application uses local storage only. No backend is required.
