@@ -101,8 +101,16 @@ npx expo start
 
 APK download link:
 
+drive link:
+
 ```text
 https://drive.google.com/file/d/1CGpSaYzYEtIq9IsemHtunNAJQsSnaaRF/view?usp=sharing
+```
+
+expo link:
+
+```text
+https://expo.dev/accounts/putrafir/projects/BusSeatBooking/builds/c2f10d6b-f00d-452f-8caf-dec132b4fd42
 ```
 
 ## Notes
